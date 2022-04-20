@@ -6,6 +6,12 @@ import helmet from 'helmet';
 
 // DATABASE
 import dbConnection from './database';
+import { validateJwt } from '../helpers/validate-JWT';
+import { isAdminRole } from '../helpers/validate-admin-role';
+
+// ROUTES
+import { router as adminRoute } from "../admin/admin.routes";
+
 
 // UTILS
 // import { rootPath } from "../app";
@@ -22,7 +28,9 @@ export default class Server {
 	}
 	// ROUTES
 	routes(){
+		// this.app.use("/api/admin",[validateJwt, isAdminRole], adminRoute);
 
+		this.app.use("/api/admin", adminRoute);
 	}
 
 	// MIDDLEWARES
